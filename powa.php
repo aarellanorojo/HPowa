@@ -20,21 +20,18 @@ if (!is_numeric($difficulty) || $difficulty<0){
     echo "The difficulty most be integer greater than 0\n";
     exit();
 }
-for ($d=0; $d<$difficulty;$d++){
-    $stringDifficulty.="0";
-}
 
+for ($d=0; $d<$difficulty;$d++) $stringDifficulty.="0";
 
 while ($isOk===false){
 
     $theHash=hash('sha256',hash('sha256',$message.$nonce, true));
 
-
-    if (substr($theHash,0,$difficulty)===$stringDifficulty){
+    if (substr($theHash,0,$difficulty)===$stringDifficulty)
         $isOk=true;
-    }else{
+    else
         $nonce++;
-    }
+
 }
 
 $finalTime=microtime(true);
